@@ -1,6 +1,9 @@
 package test.junit;
 
-public class Week5_Task5 {
+import org.junit.jupiter.api.Test;
+
+
+public class Week5_Task5 extends Tests {
     //Store the path of the file as string and open the file.
     //Open the workbook.
     //Open the first worksheet.
@@ -16,4 +19,9 @@ public class Week5_Task5 {
 
 //The 3rd column on excel file must be empty before running.
 // Otherwise, new data will be written on the old data
+
+    @Test
+    public void excelTest(){
+
+    }
 }
