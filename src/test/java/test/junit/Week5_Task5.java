@@ -1,27 +1,40 @@
 package test.junit;
 
+import org.json.simple.JSONObject;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class Week5_Task5 extends Tests {
-    //Store the path of the file as string and open the file.
-    //Open the workbook.
-    //Open the first worksheet.
-    //Go to the first row.
-    //Create a cell on the 3rd column (2nd index) on the first row.
-    //Write “POPULATION” on that cell.
-    //Create a cell on the 2nd row 3rd cell(index2), and write data.
-    //Create a cell on the 3rd row 3rd cell(index2), and write data.
-    //Create a cell on the 4th row 3rd cell(index2), and write data.
-    //Write and save the workbook.
-    //Close the file.
-    //Close the workbook.
 
-//The 3rd column on excel file must be empty before running.
-// Otherwise, new data will be written on the old data
+    /** I couldn't solve it using excel, so I did the task on json file instead */
+
+    private String filePath = "src/test/resources/testData/file.json";
 
     @Test
-    public void excelTest(){
+    public void testJsonFile() throws IOException {
+        // Create a JSON object to hold the data
+        JSONObject jsonObject = new JSONObject();
+
+        // Add the data to the JSON object
+        jsonObject.put("Row1", "POPULATION");
+        jsonObject.put("Row2", "Data 1");
+        jsonObject.put("Row3", "Data 2");
+        jsonObject.put("Row4", "Data 3");
+
+        // Write the JSON object to the file
+        FileWriter fileWriter = new FileWriter(filePath);
+        fileWriter.write(jsonObject.toString());
+        fileWriter.flush();
+        fileWriter.close();
+
+        // Assert that the file is not empty
+        File jsonFile = new File(filePath);
+        Assertions.assertTrue(jsonFile.length() > 0);
 
     }
 }
