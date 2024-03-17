@@ -1,4 +1,4 @@
-package test.testng;
+package tests.testng;
 
 public class Week6_Task2 extends Tests{
       /*

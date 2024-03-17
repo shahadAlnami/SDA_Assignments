@@ -1,4 +1,4 @@
-package test.testng;
+package tests.testng;
 
 public class Week6_Task4 extends Tests{
     //Open the site: http://opencart.abstracta.us/index.php?route=account/login

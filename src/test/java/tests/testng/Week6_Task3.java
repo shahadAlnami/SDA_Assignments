@@ -1,4 +1,4 @@
-package test.testng;
+package tests.testng;
 
 import engine.CustomListener;
 import org.openqa.selenium.By;

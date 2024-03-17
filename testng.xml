@@ -7,7 +7,8 @@
     <test name="Chrome Test">
         <parameter name="target-browser" value="chrome"/>
         <classes>
-            <class name="test.testng.Week6_Task1"/>
+            <class name="tests.testng.Week6_Task1"/>
+            <class name="tests.testng.Week6_Task3"/>
 <!--            <class name=""/>-->
         </classes>
     </test>
