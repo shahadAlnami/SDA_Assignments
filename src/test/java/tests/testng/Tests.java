@@ -24,16 +24,15 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 
-public class Tests {
+public abstract class Tests {
     protected WebDriver driver;
     protected Wait<WebDriver> wait;
-    public static Logger logger;
-    public ActionsBot bot;
+    protected static Logger logger;
+    protected ActionsBot bot;
     protected static JSONObject testData;
 
-
     @BeforeClass
-    public void beforeClass() throws IOException, ParseException {
+    public static void beforeClass() throws IOException, ParseException {
         Configurator.initialize(null, "src/main/resources/properties/log4j2.properties");
         logger = LogManager.getLogger(Tests.class.getName());
         testData =  (JSONObject) new JSONParser().parse( new FileReader("src/test/resources/testData/sample.json", StandardCharsets.UTF_8) );
@@ -48,7 +47,8 @@ public class Tests {
             case "chrome" -> driver = new ChromeDriver();
             case "firefox" -> driver = new FirefoxDriver();
             case "safari" -> driver = new SafariDriver();
-            case "edge" -> driver = new EdgeDriver();}
+            case "edge" -> driver = new EdgeDriver();
+        }
 
         driver = new EventFiringDecorator(new CustomListener()).decorate(driver);
 
@@ -64,6 +64,4 @@ public class Tests {
         logger.info("Quitting Browser");
         driver.quit();
     }
-
-
 }

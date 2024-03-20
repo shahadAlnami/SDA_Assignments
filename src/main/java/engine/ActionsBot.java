@@ -1,11 +1,14 @@
 package engine;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class ActionsBot {
@@ -19,11 +22,13 @@ public class ActionsBot {
         this.logger = logger;
     }
 
+    @Step("Navigate to URL")
     public void navigate(String url){
         logger.info("Navigating to: "+url);
-        driver.get(url);
+        driver.navigate().to(url);
     }
 
+    @Step("Type into element")
     public void type(By locator, CharSequence text){
         logger.info("Typing: "+text+", into: "+locator);
         wait.until(f -> {
@@ -33,6 +38,7 @@ public class ActionsBot {
         });
     }
 
+    @Step("Get text from element")
     public void click(By locator){
         logger.info("Clicking: "+locator);
         wait.until(f -> {
@@ -45,6 +51,17 @@ public class ActionsBot {
             }
             return true;
         });
+    }
+
+    @Step("Click on element")
+    public String getText(By locator){
+        logger.info("Reading text from: "+locator);
+        AtomicReference<String> actualText = new AtomicReference<>("");
+        wait.until(f -> {
+            actualText.set(driver.findElement(locator).getText());
+            return true;
+        });
+        return actualText.get();
     }
 
 }
